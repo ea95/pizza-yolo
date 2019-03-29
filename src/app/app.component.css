@@ -1,0 +1,7 @@
+.pizza-presentation {
+  background-color: #009687;
+  background-image: url("/assets/pizza.jpg");
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}

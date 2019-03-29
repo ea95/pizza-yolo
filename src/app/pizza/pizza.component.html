@@ -1,0 +1,15 @@
+<img src="/assets/images/{{ pizzaInfo?.image }}" class="card-img-top" />
+<div class="card-body">
+  <h5 class="card-title">
+    {{ pizzaInfo?.nom }} - {{ pizzaInfo?.prix | currency: "EUR" }}
+  </h5>
+  <p class="card-text">
+    Ingrédients :
+    <span *ngFor="let ing of pizzaInfo?.ingredients; let i = index"
+      >{{ ing }}{{ i === pizzaInfo?.ingredients.length - 1 ? "." : "," }}
+    </span>
+  </p>
+  <button class="btn btn-secondary" (click)="ajouterAuPanier(pizzaInfo)">
+    Choisir
+  </button>
+</div>

@@ -1,0 +1,53 @@
+<!-- <pre>{{ menuComplet | json }}</pre> -->
+<div class="container-fluid h-100">
+  <div class="row justify-content-center h-100">
+    <div class="col-xs-12 col-sm-5 pizza-presentation"></div>
+    <div class="col-xs-12 col-sm-7">
+      <app-header></app-header>
+      <button
+        *ngIf="menuVisible === false"
+        class="btn btn-secondary"
+        type="button"
+        (click)="voirMenu()"
+      >
+        Voir le menu
+      </button>
+
+      <div *ngIf="menuVisible === true" class="card-columns">
+        <div
+          *ngFor="let item of menuComplet"
+          class="card"
+          style="width: 18rem;"
+        >
+          <app-pizza [pizzaInfo]="item"></app-pizza>
+        </div>
+      </div>
+      <footer>
+        <div class="form-control-group">
+          <label>Entrez votre nom: </label
+          ><input class="form-control" [(ngModel)]="nom" />
+        </div>
+        <ul class="list-group list-group-flush">
+          <li
+            class="list-group-item d-flex justify-content-between"
+            *ngFor="let item of panier; let idx = index"
+          >
+            {{ item?.nom }} - {{ item?.prix | currency: "EUR" }}
+            <button class="btn btn-sm btn-danger" (click)="supprimerItem(idx)">
+              x
+            </button>
+          </li>
+          <li class="list-group-item list-group-item-info">
+            <strong>Total: {{ total | currency: "EUR" }} </strong>
+          </li>
+        </ul>
+        <button
+          class="btn btn-primary float-right"
+          [disabled]="!nom || panier.length === 0"
+        >
+          Commander
+        </button>
+      </footer>
+    </div>
+  </div>
+</div>
