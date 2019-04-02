@@ -23,14 +23,14 @@
         </div>
       </div>
       <footer>
-        <div class="form-control-group">
-          <label>Entrez votre nom: </label
-          ><input class="form-control" [(ngModel)]="nom" />
+        <div class="form-control-group mb-3">
+          <label for="nom">Entrez votre nom: </label
+          ><input id="nom" class="form-control" [(ngModel)]="nom" />
         </div>
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush mb-3">
           <li
             class="list-group-item d-flex justify-content-between"
-            *ngFor="let item of panier; let idx = index"
+            *ngFor="let item of pizzaService.panier; let idx = index"
           >
             {{ item?.nom }} - {{ item?.prix | currency: "EUR" }}
             <button class="btn btn-sm btn-danger" (click)="supprimerItem(idx)">
@@ -42,8 +42,8 @@
           </li>
         </ul>
         <button
-          class="btn btn-primary float-right"
-          [disabled]="!nom || panier.length === 0"
+          class="btn btn-primary float-right mb-3"
+          [disabled]="!nom || pizzaService.panier.length === 0"
         >
           Commander
         </button>

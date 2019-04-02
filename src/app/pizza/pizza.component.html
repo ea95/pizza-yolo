@@ -1,4 +1,4 @@
-<img src="/assets/images/{{ pizzaInfo?.image }}" class="card-img-top" />
+<img src="{{ pizzaInfo?.getImage() }}" class="card-img-top" />
 <div class="card-body">
   <h5 class="card-title">
     {{ pizzaInfo?.nom }} - {{ pizzaInfo?.prix | currency: "EUR" }}

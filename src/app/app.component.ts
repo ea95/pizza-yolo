@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { pizzas } from "./data/pizzas";
 
+import { PizzaService } from "./pizza.service";
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
@@ -11,12 +13,13 @@ export class AppComponent {
   menuComplet = pizzas;
   menuVisible = true;
   nom = "";
-  panier = [];
+
+  constructor(public pizzaService : PizzaService) {}
 
   get total () {
     let total = 0;
-    for(let i = 0; i < this.panier.length; i++) {
-      total += this.panier[i].prix;
+    for(let i = 0; i < this.pizzaService.panier.length; i++) {
+      total += this.pizzaService.panier[i].prix;
     }
     return total;
   }
@@ -25,11 +28,9 @@ export class AppComponent {
   voirMenu () {
     this.menuVisible = true;
   }
-  ajouterAuPanier (pizza) {
-    this.panier.push(pizza);
-  }
+
   supprimerItem(index) {
-    this.panier.splice(index, 1)
+    this.pizzaService.panier.splice(index, 1)
   }
 
 }
